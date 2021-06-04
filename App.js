@@ -8,7 +8,7 @@ export default class App extends React.Component {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>1</Text>
-            <Text style={styles.text}>2</Text>
+            <Text style={[styles.text,styles.text2]}>2</Text>
             <Text style={styles.text}>3</Text>
             <StatusBar style="auto"/>
         </View>
@@ -20,14 +20,20 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center',
+        alignItems: 'stretch',
         justifyContent: 'center',
-        flexDirection: 'row',
     },
     text: {
         flex: 1,
         borderWidth: 1,
         borderColor: 'red',
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        fontSize: 24,
+        fontWeight: 'bold',
     },
+    text2: {
+        flex: 2,
+    }
 });
 
