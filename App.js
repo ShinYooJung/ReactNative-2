@@ -80,9 +80,10 @@ export default class App extends React.Component {
         { name: 'Yellow watermelon' },
         { name: 'Zucchini' },
     ];
+
     renderItem({ name }) {
         return (
-          <View style={styles.item}>
+            <View style={styles.item} key={name}>
             <Text style={styles.text}>{name}</Text>
           </View>
         );
