@@ -2,15 +2,23 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
-  const clickHandler = () => console.log('Clicked!');
+export default class App extends React.Component {
+  state = {
+    counter: 0,
+  };
 
-  return (
-    <View style={styles.container}>
-      <Button title={'click me'} onPress={clickHandler}/>
-      <StatusBar style="auto" />
-    </View>
-  );
+  render() {
+    const clickHandler = () => {this.setState({counter: this.state.counter + 1});
+    };
+
+    return (
+      <View style={styles.container}>
+        <Text>{this.state.counter}</Text>
+        <Button title={'click me'} onPress={clickHandler}/>
+        <StatusBar style="auto" />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
