@@ -1,32 +1,47 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import {SafeAreaView, FlatList, Image, StyleSheet, Text, ScrollView, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default class App extends React.Component {
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+          cities: [],
+        };
+      }
   componentDidMount() {
         fetch('https://raw.githubusercontent.com/example0312/weather-crawler/e3168f2b4e316691f8ab385f738783976eef7f0d/availableCityNames')
         .then(response => response.json())
-        .then(console.log);
+        .then(cities => {
+            console.log('cities =', cities.length);
+            this.setState({
+              cities
+            });
+          });
       }
-  renderItem({ name }) {
+  renderItem(city) {
     return (
       <View style={styles.item}>
-        <Text style={styles.text}>{name}</Text>
+        <Text style={styles.text}>{city}</Text>
       </View>
     );
   }
 
   render() {
     return (
+      <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
         <FlatList style={styles.container}
-          keyExtractor={(item) => item.name}
+          keyExtractor={item => item}
           renderItem={({ item }) => this.renderItem(item)}
-          data={this.fruits}
+          data={this.state.cities}
         />
 
         <StatusBar style="auto" />
       </SafeAreaView>
+      </SafeAreaProvider>
     );
   }
 }
