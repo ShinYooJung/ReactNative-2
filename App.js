@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-});s
+});
 
 export default class App extends React.Component {
   render() {
@@ -30,6 +30,7 @@ export default class App extends React.Component {
           <Stack.Screen
             name="Home"
             component={HomeScreen}
+            options={{ title: 'Cities' }}
           />
         </Stack.Navigator>
       </NavigationContainer>
